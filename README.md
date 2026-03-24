@@ -1,123 +1,77 @@
 # World of Ships
 
-Консольная игра по мотивам «Морского боя» на C++17. Проект поддерживает настройку управления через JSON, ручную расстановку кораблей, пошаговый бой с ботом, систему способностей и сохранение/загрузку состояния игры.
+Консольная игра по мотивам «Морского боя» на C++17. Проект поддерживает настройку управления через JSON, ручную расстановку кораблей, пошаговый бой с ботом, систему способностей и сохранение/загрузку состояния игры. Была выполнена в рамках курсовой работы 2 курса.
 
-## Запуск
+## Инструкция по запуску
 
-### 1) Обычный запуск
+### Скачать готовый образ
 
-#### Зависимости
+```bash
+sudo docker pull ghcr.io/chesluchilos/world-of-ships:1.0.0
+```
 
-Минимально нужны:
-- `g++` с поддержкой C++17
-- `make`
-- `OpenSSL` для линковки `libssl` и `libcrypto`
+### Запуск
 
-Для Ubuntu / Debian:
+```bash
+sudo docker run --rm -it -v world-of-ships-data:/data ghcr.io/chesluchilos/world-of-ships:1.0.0
+```
+
+### Очистка
+
+```bash
+sudo docker rm -f $(sudo docker ps -aq --filter ancestor=ghcr.io/chesluchilos/world-of-ships:1.0.0) 2>/dev/null || true
+sudo docker rm -f $(sudo docker ps -aq --filter ancestor=ghcr.io/chesluchilos/world-of-ships:latest) 2>/dev/null || true
+sudo docker volume rm world-of-ships-data 2>/dev/null || true
+sudo docker image rm ghcr.io/chesluchilos/world-of-ships:1.0.0 2>/dev/null || true
+sudo docker image rm ghcr.io/chesluchilos/world-of-ships:latest 2>/dev/null || true
+```
+
+---
+
+## Альтернативный запуск
+
+### Ubuntu / Debian
 
 ```bash
 sudo apt-get update
 sudo apt-get install -y g++ make libssl-dev
 ```
 
-Для Fedora:
+### Fedora
 
 ```bash
 sudo dnf install gcc-c++ make openssl-devel
 ```
 
-Для Arch Linux:
+### Arch Linux
 
 ```bash
 sudo pacman -S gcc make openssl
 ```
 
-#### Сборка
-
-Рекомендуемый способ сборки — напрямую через `g++`:
+### Сборка
 
 ```bash
-g++ -std=c++17 -O2 -w \
-  ./Abilities/AbilityManager.cpp \
-  ./Abilities/DoubleDamageAbility.cpp \
-  ./Abilities/RandomHitAbility.cpp \
-  ./Abilities/ResultOfUsingAbilities.cpp \
-  ./Abilities/ScannerAbility.cpp \
-  ./Factories/DoubleDamageFactory.cpp \
-  ./Factories/RandomHitFactory.cpp \
-  ./Factories/ScannerFactory.cpp \
-  ./Game/CommandHandler.cpp \
-  ./Game/ConsoleRenderer.cpp \
-  ./Game/Game.cpp \
-  ./Game/GameState.cpp \
-  ./GameField/Cell.cpp \
-  ./GameField/GameField.cpp \
-  ./Holders/CoordsHolder.cpp \
-  ./Holders/CoordsReader.cpp \
-  ./Ships/Ship.cpp \
-  ./Ships/ShipManager.cpp \
-  ./main.cpp \
-  -lssl -lcrypto -o game
+make
 ```
 
-Запуск:
+### Запуск
 
 ```bash
 ./game
 ```
 
-#### Сборка через Makefile
-
-В репозитории есть `Makefile`:
+### Очистка
 
 ```bash
-make game
-./game
+make clean
 ```
 
-Но у текущего `Makefile` жёстко прописаны `-O3` и `-j8`. На машинах с небольшим объёмом памяти сборка может быть прервана. Если такое происходит, используй команду `g++` выше: она надёжнее для локального запуска и CI.
-
-#### Важно
-
-- Игра ожидает файл `config.json` в текущей рабочей директории.
-- Сохранения и загрузки работают с файлами формата `.json`.
-- Проект рассчитан на интерактивный терминал: ввод команд идёт посимвольно, без необходимости нажимать Enter для большинства действий.
-
-### 2) Запуск через Docker
-
-Ниже два варианта Dockerfile: single-stage и multi-stage. Выбери любой из них и переименуй в `Dockerfile`, либо укажи нужный файл флагом `-f`.
-
-#### Сборка образа
-
-Single-stage:
-
-```bash
-docker build -f Dockerfile.single -t world-of-ships .
-```
-
-Multi-stage:
-
-```bash
-docker build -f Dockerfile.multi -t world-of-ships .
-```
-
-#### Запуск
-
-Базовый запуск:
-
-```bash
-docker run --rm -it world-of-ships
-```
-
-Запуск с примонтированной текущей директорией полезен, если хочешь сохранять свои файлы на хосте и использовать локальные `config.json` / `save.json`:
-
-```bash
-docker run --rm -it -v "$(pwd)":/app world-of-ships
-```
+---
 
 ## О проекте
 
-`World of Ships` — это консольная реализация «Морского боя» с расширенной игровой логикой. Игрок вручную задаёт параметры поля, количество и длины кораблей, размещает свой флот, а затем играет против бота. В игре есть не только атака по клетке, но и специальные способности, а также механизм сохранения и загрузки состояния.
+`World of Ships` - это консольная реализация «Морского боя» с расширенной игровой логикой. Игрок вручную задаёт параметры поля, количество и длины кораблей, размещает свой флот, а затем играет против бота. В игре есть не только атака по клетке, но и специальные способности, а также механизм сохранения и загрузки состояния.
 
 ### Основные возможности
 
@@ -139,22 +93,22 @@ docker run --rm -it -v "$(pwd)":/app world-of-ships
 
 По умолчанию раскладка берётся из `config.json`:
 
-- `W / A / S / D` — перемещение
-- `Enter` — выбор
-- `P` — начать игру
-- `C` — сохранить игру
-- `V` — загрузить игру
-- `Q` — выйти
-- `R` — разместить корабль
-- `O` — сменить ориентацию корабля
-- `F` — переключение поля
-- `Z` — атака
-- `U` — использовать способность
-- `H` — показать доступные способности
-- `E` — завершить ход
-- `M` — меню
-- `Y / N` — подтверждение
-- `X` — отмена
+- `W / A / S / D` - перемещение
+- `Enter` - выбор
+- `P` - начать игру
+- `C` - сохранить игру
+- `V` - загрузить игру
+- `Q` - выйти
+- `Enter` - разместить корабль/выстрелить
+- `O` - сменить ориентацию корабля
+- `F` - переключение поля
+- `Z` - атака
+- `U` - использовать способность
+- `H` - показать доступные способности
+- `E` - завершить ход
+- `M` - меню
+- `Y / N` - подтверждение
+- `X` - отмена
 
 При необходимости раскладку можно изменить в `config.json`.
 
@@ -171,15 +125,15 @@ docker run --rm -it -v "$(pwd)":/app world-of-ships
 
 ### Игровая логика
 
-- `Game/` — основной игровой цикл, состояние игры, рендеринг и обработка команд.
-- `GameField/` — клетки поля и логика атак/размещения.
-- `Ships/` — корабли и менеджер кораблей.
-- `Abilities/` — способности и менеджер способностей.
-- `Factories/` — фабрики создания способностей.
-- `Holders/` — вспомогательные структуры для координат и данных.
-- `Exceptions/` — пользовательские исключения.
+- `Game/` - основной игровой цикл, состояние игры, рендеринг и обработка команд.
+- `GameField/` - клетки поля и логика атак/размещения.
+- `Ships/` - корабли и менеджер кораблей.
+- `Abilities/` - способности и менеджер способностей.
+- `Factories/` - фабрики создания способностей.
+- `Holders/` - вспомогательные структуры для координат и данных.
+- `Exceptions/` - пользовательские исключения.
 
-### Что видно по реализации
+### Реализация
 
 В проекте используются:
 - объектно-ориентированная декомпозиция;
@@ -190,22 +144,8 @@ docker run --rm -it -v "$(pwd)":/app world-of-ships
 
 ## Файлы конфигурации и данных
 
-- `config.json` — привязка клавиш к командам.
-- `save.json` — пример сохранения.
+- `config.json` - привязка клавиш к командам.
+- `save_example.json` - пример сохранения.
 
-## Структура репозитория
-
-```text
-.
-├── Abilities/
-├── Exceptions/
-├── Factories/
-├── Game/
-├── GameField/
-├── Holders/
-├── Reports/
-├── Ships/
-├── config.json
-├── main.cpp
-└── Makefile
-```
+## Автор
+- Мурдасов Михаил. СПБГЭТУ "ЛЭТИ" 3 курс "Программная инженерия"
