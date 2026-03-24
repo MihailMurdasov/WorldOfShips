@@ -1,0 +1,33 @@
+FROM ubuntu:24.04 AS builder
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    g++ \
+    make \
+    libssl-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
+
+WORKDIR /app
+COPY . .
+
+RUN make
+
+
+FROM ubuntu:24.04
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libssl3 \
+    libstdc++6 \
+    && rm -rf /var/lib/apt/lists/*
+
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
+
+WORKDIR /app
+
+COPY --from=builder /app/game ./game
+COPY --from=builder /app/config.json ./config.json
+
+CMD ["./game"]

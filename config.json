@@ -1,0 +1,23 @@
+{
+    "W": "MOVE_UP",
+    "S": "MOVE_DOWN",
+    "A": "MOVE_LEFT",
+    "D": "MOVE_RIGHT",
+    "\n": "ENTER",
+    "P": "PLAY",
+    "C": "SAVE",
+    "V": "LOAD",
+    "Q": "EXIT",
+    " ": "CONTINUE",
+    "R": "PLACE",
+    "O": "ORIENTATION",
+    "F": "FIELD_SWITCH",
+    "X": "CANCEL",
+    "E": "END_TURN",
+    "Z": "ATTACK",
+    "U": "USE_ABILITY",
+    "H": "SHOW_ABILITIES",
+    "M": "MENU",
+    "Y": "YES",
+    "N": "NO"
+}

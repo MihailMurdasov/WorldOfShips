@@ -1,0 +1,217 @@
+{
+    "ability_manager": {
+        "abilities": [
+            [
+                "scanner"
+            ],
+            [
+                "double_damage"
+            ],
+            [
+                "random_hit"
+            ]
+        ]
+    },
+    "enemy_field": {
+        "field": [
+            [
+                {
+                    "attacked": false,
+                    "segment_id": -1,
+                    "segment_state": -1,
+                    "ship_id": -1,
+                    "state": "unknown"
+                },
+                {
+                    "attacked": false,
+                    "segment_id": -1,
+                    "segment_state": -1,
+                    "ship_id": -1,
+                    "state": "unknown"
+                },
+                {
+                    "attacked": false,
+                    "segment_id": -1,
+                    "segment_state": -1,
+                    "ship_id": -1,
+                    "state": "unknown"
+                }
+            ],
+            [
+                {
+                    "attacked": false,
+                    "segment_id": 0,
+                    "segment_state": 0,
+                    "ship_id": 0,
+                    "state": "ship"
+                },
+                {
+                    "attacked": false,
+                    "segment_id": -1,
+                    "segment_state": -1,
+                    "ship_id": -1,
+                    "state": "unknown"
+                },
+                {
+                    "attacked": false,
+                    "segment_id": 0,
+                    "segment_state": 0,
+                    "ship_id": 1,
+                    "state": "ship"
+                }
+            ],
+            [
+                {
+                    "attacked": false,
+                    "segment_id": -1,
+                    "segment_state": -1,
+                    "ship_id": -1,
+                    "state": "unknown"
+                },
+                {
+                    "attacked": false,
+                    "segment_id": -1,
+                    "segment_state": -1,
+                    "ship_id": -1,
+                    "state": "unknown"
+                },
+                {
+                    "attacked": false,
+                    "segment_id": -1,
+                    "segment_state": -1,
+                    "ship_id": -1,
+                    "state": "unknown"
+                }
+            ]
+        ],
+        "height": 3,
+        "ship_data": [
+            {
+                "len": 1,
+                "orientation": 0,
+                "shipID": 0,
+                "x": 0,
+                "y": 1
+            },
+            {
+                "len": 1,
+                "orientation": 1,
+                "shipID": 1,
+                "x": 2,
+                "y": 1
+            }
+        ],
+        "width": 3
+    },
+    "enemy_ship_manager": {
+        "number": 2,
+        "sizes": [
+            1,
+            1
+        ]
+    },
+    "metadata": {
+        "hash": "91fe7bace7ffbd6b2c68bf852ecce1a9d1d8e4aba1325a4cfd6c533bf28c74c2",
+        "hmac": "10ffcd59ee029a2e1d3dbc02db32c1a420103458896715cc924b1d8f0897c6fe",
+        "size": 2010,
+        "timestamp": 1734382539
+    },
+    "player_field": {
+        "field": [
+            [
+                {
+                    "attacked": false,
+                    "segment_id": -1,
+                    "segment_state": -1,
+                    "ship_id": -1,
+                    "state": "unknown"
+                },
+                {
+                    "attacked": false,
+                    "segment_id": -1,
+                    "segment_state": -1,
+                    "ship_id": -1,
+                    "state": "unknown"
+                },
+                {
+                    "attacked": false,
+                    "segment_id": 0,
+                    "segment_state": 0,
+                    "ship_id": 0,
+                    "state": "ship"
+                }
+            ],
+            [
+                {
+                    "attacked": true,
+                    "segment_id": 0,
+                    "segment_state": 1,
+                    "ship_id": 1,
+                    "state": "ship"
+                },
+                {
+                    "attacked": false,
+                    "segment_id": -1,
+                    "segment_state": -1,
+                    "ship_id": -1,
+                    "state": "unknown"
+                },
+                {
+                    "attacked": false,
+                    "segment_id": -1,
+                    "segment_state": -1,
+                    "ship_id": -1,
+                    "state": "unknown"
+                }
+            ],
+            [
+                {
+                    "attacked": false,
+                    "segment_id": -1,
+                    "segment_state": -1,
+                    "ship_id": -1,
+                    "state": "unknown"
+                },
+                {
+                    "attacked": false,
+                    "segment_id": -1,
+                    "segment_state": -1,
+                    "ship_id": -1,
+                    "state": "unknown"
+                },
+                {
+                    "attacked": true,
+                    "segment_id": -1,
+                    "segment_state": -1,
+                    "ship_id": -1,
+                    "state": "empty"
+                }
+            ]
+        ],
+        "height": 3,
+        "ship_data": [
+            {
+                "len": 1,
+                "orientation": 0,
+                "shipID": 0,
+                "x": 2,
+                "y": 0
+            },
+            {
+                "len": 1,
+                "orientation": 0,
+                "shipID": 1,
+                "x": 0,
+                "y": 1
+            }
+        ],
+        "width": 3
+    },
+    "player_ship_manager": {
+        "number": 2,
+        "sizes": [
+            1,
+            1
+        ]
+    }
+}
