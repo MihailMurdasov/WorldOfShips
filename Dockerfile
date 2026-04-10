@@ -1,6 +1,6 @@
 FROM ubuntu:24.04 AS builder
 
-LABEL org.opencontainers.image.source="https://github.com/chesluchilos/WorldOfShips"
+LABEL org.opencontainers.image.source="https://github.com/MihailMurdasov/WorldOfShips"
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     g++ \
